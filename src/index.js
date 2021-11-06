@@ -15,6 +15,8 @@ export default function gulpSassGlob (options = {}) {
 
 function transform (file, env, callback, options = {}) {
   const includePaths = options.includePaths || [];
+  const includeFileNameStart = options.includeFileNameStart || false;
+  const includeFileNameEnd = options.includeFileNameEnd || false;
 
   for (let i = 0; i < includePaths.length; i++) {
     includePaths[i] = path.join(path.normalize(includePaths[i]), '/');
@@ -60,7 +62,11 @@ function transform (file, env, callback, options = {}) {
             return minimatch(filename, ignorePath);
           })) {
             // remove parent base path
-            imports.push('@import "' + slash(filename) + '"' + (isSass ? '' : ';'));
+            let string = '';
+            if (includeFileNameStart) { string = '/*! @import ' + slash(filename) + ' start */\n'; }
+            string += '@import "' + slash(filename) + '"' + (isSass ? '' : ';');
+            if (includeFileNameEnd) { string += '\n\n/*! @import ' + slash(filename) + ' end */'; }
+            imports.push(string);
           }
         }
       });

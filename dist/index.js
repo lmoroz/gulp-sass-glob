@@ -54,6 +54,8 @@ function transform(file, env, callback) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   var includePaths = options.includePaths || [];
+  var includeFileNameStart = options.includeFileNameStart || false;
+  var includeFileNameEnd = options.includeFileNameEnd || false;
 
   for (var i = 0; i < includePaths.length; i++) {
     includePaths[i] = _path2.default.join(_path2.default.normalize(includePaths[i]), '/');
@@ -105,7 +107,11 @@ function transform(file, env, callback) {
               return (0, _minimatch2.default)(filename, ignorePath);
             })) {
               // remove parent base path
-              imports.push('@import "' + (0, _slash2.default)(filename) + '"' + (isSass ? '' : ';'));
+              var string = '';
+              if (includeFileNameStart) string = '/*! @import ' + (0, _slash2.default)(filename) + ' start */\n';
+              string += '@import "' + (0, _slash2.default)(filename) + '"' + (isSass ? '' : ';');
+              if (includeFileNameEnd) string += '\n\n/*! @import ' + (0, _slash2.default)(filename) + ' end */';
+              imports.push(string);
             }
           }
         });

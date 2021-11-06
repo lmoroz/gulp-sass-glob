@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-glob",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Gulp task to use glob imports in your sass/scss files.",
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.2",
-    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
