@@ -108,9 +108,13 @@ function transform(file, env, callback) {
             })) {
               // remove parent base path
               var string = '';
-              if (includeFileNameStart) string = '/*! @import ' + (0, _slash2.default)(filename) + ' start */\n';
+              if (includeFileNameStart) {
+                string = '/*! @import ' + (0, _slash2.default)(filename) + ' start */\n';
+              }
               string += '@import "' + (0, _slash2.default)(filename) + '"' + (isSass ? '' : ';');
-              if (includeFileNameEnd) string += '\n\n/*! @import ' + (0, _slash2.default)(filename) + ' end */';
+              if (includeFileNameEnd) {
+                string += '\n\n/*! @import ' + (0, _slash2.default)(filename) + ' end */';
+              }
               imports.push(string);
             }
           }
