@@ -28,7 +28,7 @@ function transform (file, env, callback, options = {}) {
 
   const searchBases = [base, ...includePaths];
   let contents = file.contents.toString('utf-8');
-  let contentsCount = contents.split('\n').length;
+  let contentsCount = contents.split(/\r?\n/).length;
 
   let result;
 

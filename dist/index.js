@@ -67,7 +67,7 @@ function transform(file, env, callback) {
 
   var searchBases = [base].concat(_toConsumableArray(includePaths));
   var contents = file.contents.toString('utf-8');
-  var contentsCount = contents.split('\n').length;
+  var contentsCount = contents.split(/\r?\n/).length;
 
   var result = void 0;
 
